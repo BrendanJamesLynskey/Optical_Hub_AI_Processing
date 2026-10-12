@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical Technology for AI Processing &mdash; Optical Technology</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Geist+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1c1815; --bg-card: #231e1a; --bg-code: #2b2520;
+            --text-primary: #efe8dc; --text-secondary: #a2978b;
+            --accent: #aabd59; --accent-dim: #aabd5944; --accent-glow: #aabd5933;
+            --border: #3a322b;
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-mono: 'Geist Mono', 'Geist Mono', monospace;
+            --font-body: 'Instrument Sans', sans-serif;
+            --max-width: 960px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-primary); color: var(--text-primary);
+               font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+               overflow-x: hidden; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column;
+                justify-content: center; align-items: center;
+                padding: 4rem 1.5rem 3rem; text-align: center; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%;
+                        transform: translateX(-50%); width: 600px; height: 600px;
+                        background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+                        pointer-events: none; z-index: 0; }
+        .hero > * { position: relative; z-index: 1; }
+        .series-label { font-family: var(--font-mono); font-size: 0.85rem;
+                        color: var(--accent); letter-spacing: 0.15em;
+                        text-transform: uppercase; margin-bottom: 1rem; }
+        .hero h1 { font-family: var(--font-display);
+                   font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+                   color: var(--text-primary); line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 .accent { color: var(--accent); }
+        .hero .subtitle { font-size: 1.1rem; color: var(--text-secondary);
+                          max-width: 720px; margin-bottom: 1.5rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem;
+                justify-content: center; margin-bottom: 1rem; }
+        .tag { font-family: var(--font-mono); font-size: 0.75rem;
+               padding: 0.25rem 0.75rem; border-radius: 999px;
+               border: 1px solid var(--accent); color: var(--accent);
+               background: var(--accent-dim); white-space: nowrap; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1.5rem; }
+        h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+             color: var(--accent); margin: 1rem 0 1.25rem; }
+        .deck-list { display: flex; flex-direction: column; gap: 0.6rem;
+                     list-style: none; padding: 0; counter-reset: deck; }
+        .deck-card { display: flex; gap: 1rem; padding: 1rem 1.25rem;
+                     background: var(--bg-card); border: 1px solid var(--border);
+                     border-left: 3px solid var(--accent); border-radius: 6px;
+                     transition: border-color 0.15s; counter-increment: deck; }
+        .deck-card:hover { border-color: var(--accent); }
+        .deck-card.roadmap { border-left-color: #e3b174; }
+        .deck-card.roadmap:hover { border-color: #e3b174; }
+        .deck-card .num { font-family: var(--font-mono); font-size: 0.8rem;
+                          color: var(--accent); min-width: 2rem;
+                          padding-top: 0.15rem; }
+        .deck-card.roadmap .num { color: #e3b174; }
+        .deck-card .num::before { content: counter(deck, decimal-leading-zero); }
+        .deck-card .body { flex: 1; min-width: 0; }
+        .deck-card .deck-title { font-family: var(--font-display); font-size: 1.05rem;
+                                 font-weight: 600; color: var(--text-primary);
+                                 margin-bottom: 0.2rem; }
+        .deck-card a.deck-title { text-decoration: none; }
+        .deck-card a.deck-title:hover { color: var(--accent); }
+        .deck-card .desc { font-size: 0.92rem; color: var(--text-secondary); }
+        .deck-card .meta { font-family: var(--font-mono); font-size: 0.7rem;
+                           color: var(--text-secondary); margin-top: 0.4rem;
+                           display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .badge { display: inline-block; font-family: var(--font-mono);
+                 font-size: 0.65rem; padding: 0.1rem 0.5rem; border-radius: 999px;
+                 border: 1px solid var(--border); color: var(--text-secondary); }
+        .badge.live { border-color: var(--accent); color: var(--accent);
+                      background: var(--accent-dim); }
+        .badge.roadmap { border-color: #e3b174; color: #e3b174;
+                         background: rgba(227,177,116,0.08); }
+        .callout { background: var(--bg-card); border-left: 3px solid var(--accent);
+                   border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .callout p { margin-bottom: 0; color: var(--text-secondary); }
+        .callout p strong { color: var(--text-primary); }
+        .footer { text-align: center; padding: 3rem 1.5rem;
+                  color: var(--text-secondary); font-size: 0.85rem;
+                  border-top: 1px solid var(--border); max-width: var(--max-width);
+                  margin: 3rem auto 0; }
+        .footer a { color: var(--accent); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.8rem; }
+            .deck-card { flex-direction: column; gap: 0.3rem; }
+        }
+            .deck-card.code { border-left-color: #97cdc6; }
+        .deck-card.code .num { color: #97cdc6; }
+        .deck-card.code .num::before { content: none; }
+        .badge.code { border-color: #97cdc6; color: #97cdc6; background: rgba(151,205,198,0.08); }
+    </style>
+
+<style>:root{font-synthesis-weight:none}        .deck-card.code { border-left-color: #97cdc6; }
+        .deck-card.code .num { color: #97cdc6; }
+        .deck-card.code .num::before { content: none; }
+        .badge.code { border-color: #97cdc6; color: #97cdc6; background: rgba(151,205,198,0.08); }
+        h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--accent); margin: 1.6rem 0 0.6rem; }
+        .gloss-intro { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        dl.gloss dt { font-weight: 700; margin-top: 0.9rem; scroll-margin-top: 1rem; }
+        dl.gloss dt:target { color: var(--accent); }
+        dl.gloss dd { margin: 0.2rem 0 0 0; font-size: 0.92rem; color: var(--text-secondary); }
+        dl.gloss dd .where { display: block; margin-top: 0.25rem; font-size: 0.85rem; }
+        dl.gloss a, .gloss-intro a { color: var(--accent); }
+        .hero { overflow: hidden; }   /* the 600px glow must not widen the page on phones */
+    </style>
+</head>
+<body>
+<header class="hero">
+    <div class="series-label">Optical Technology &mdash; Optical Technology for AI Processing</div>
+    <h1>Optical Technology for <span class="accent">AI Processing</span></h1>
+    <p class="subtitle">Can light do the arithmetic of AI? A map of optical computing approaches and what each has shown; the price of an optical matrix multiply in conversions, precision and static power; where optics could win and where it cannot; and the public landscape of companies, with every company claim attributed to its source and labelled as the company's own.</p>
+    <div class="tags"><span class="tag">Optical MACs</span><span class="tag">MZI meshes</span><span class="tag">Diffractive networks</span><span class="tag">Conversions</span><span class="tag">Win conditions</span><span class="tag">Company claims</span><span class="tag">4 decks live</span></div>
+</header>
+<main class="container">
+    <h2>Presentations in This Series</h2>
+    <ol class="deck-list">
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/">A Map of Optical Computing &rarr;</a><div class="desc">How light can do the arithmetic of neural networks: the three physical facts it rests on, and the families built on them: free-space and diffractive optics, coherent Mach&ndash;Zehnder meshes, incoherent wavelength-multiplexed crossbars and photoelectric multiplication, with the results each has published, the nonlinearity problem, and training as well as inference.</div><div class="meta"><span class="badge live">live</span><span>Interference &middot; Diffractive networks &middot; MZI meshes &middot; WDM crossbars</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/">Optical Matrix Multiply: Precision and Conversions &rarr;</a><div class="desc">Pricing an optical matrix&ndash;vector product conversion by conversion: encoding and storing values, where noise sets precision, the photon floor, why converters dominate, static power and utilisation, how arrays scale and drift, and the digital yardstick it has to beat.</div><div class="meta"><span class="badge live">live</span><span>Reuse &middot; Weight storage &middot; ENOB &middot; Shot noise</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/">Where Optics Could Win, and the Limits &rarr;</a><div class="desc">The conditions under which optical arithmetic beats digital, a map of where it wins, which AI operations fit, memory and Amdahl, precision for inference and training, the 1/d scaling argument for very large models, and the niches where the case is strongest.</div><div class="meta"><span class="badge live">live</span><span>Win conditions &middot; Amdahl &middot; Memory wall &middot; 1/d scaling</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/">The Public Landscape &rarr;</a><div class="desc">Who is building optical AI hardware and what they say about it, in their own words: companies with peer-reviewed systems, with products and press releases, with funding and targets, and those moving towards interconnect. Every company claim is attributed to its public source and labelled as the company's own.</div><div class="meta"><span class="badge live">live</span><span>Company claims &middot; Peer-reviewed &middot; Products &middot; Interconnect pivot</span></div></div></li>
+    </ol>
+    <div class="callout">
+        <p><strong>How to read this series.</strong> Deck 01 maps the approaches and their published results, with an interactive mesh that shows how errors compound. Deck 02 prices an optical matrix multiply term by term, with an energy-per-MAC model. Deck 03 maps where that model beats digital and which AI operations fit. Deck 04 surveys the companies, with a checker that shows what a claimed throughput and power must assume.</p>
+    </div>
+    <div class="callout">
+        <p><strong>Where the numbers come from.</strong> Every number is cited on its slide to a paper, datasheet or public company source, with a link, or computed live by an interactive. Company figures are labelled as the company's own; peer-reviewed results are marked as such; projections are called projections; and the interactives' coefficients are labelled as illustrative where no source fixes them.</p>
+    </div>
+    <div class="callout">
+        <p><strong>Built on the other series.</strong> Fourier optics, the 4f system, the precision rule for float workloads and conversion energy are in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/">Fourier Optics for Inference</a>; optical backpropagation and training precision in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/">Fourier Optics for Training</a>; modulators, rings and WDM in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/">Silicon Photonics Fundamentals</a>; and optical interconnect in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/Optical_Hub_Data_Centres/">Optical Technology for Data Centres</a>. They are linked, not repeated.</p>
+    </div>
+
+    <h2 id="glossary">Glossary: Concepts and Where They Are Explained</h2>
+    <p class="gloss-intro">Every concept the decks rely on, with a short explanation and links to the slides that explain it. Concepts the sister series already explain are linked, not repeated: <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#glossary">Fourier Optics for Inference</a>, <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#glossary">Fourier Optics for Training</a> and <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#glossary">Silicon Photonics Fundamentals</a> above all.</p>
+    <h3>Approaches</h3>
+    <dl class="gloss">
+        <dt id="g-opticalcompute">Optical computing (for AI)</dt>
+        <dd>Light doing part of a neural network's arithmetic, usually matrix&ndash;vector products, with electronics converting data in and out, applying nonlinearities and storing results. Distinct from optical interconnect, which only moves bits.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-01">OptAI 01 &middot; what this series means by optical computing</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-12">OptAI 01 &middot; what is not optical computing here</a></span></dd>
+        <dt id="g-threefacts">Interference, propagation and square-law detection</dt>
+        <dd>The three facts optical computing rests on: coherent fields add as complex amplitudes (a weighted sum), propagation through optics applies a fixed linear transform, and detectors measure power, losing sign and phase unless a reference is mixed in.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-02">OptAI 01 &middot; three physical facts</a></span></dd>
+        <dt id="g-diffractive">Diffractive networks</dt>
+        <dd>Stacks of engineered diffractive layers whose pixels are the weights; light passing through computes a fixed linear network. Strongest on vision, where the input is already light: ACCEL and Taichi report peta-operation and 160 TOPS/W figures by their own definitions.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-05">OptAI 01 &middot; diffractive networks</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-09">OptAI 03 &middot; when the data is already light</a></span></dd>
+        <dt id="g-mzinet">MZI-mesh neural network</dt>
+        <dd>A programmable grid of Mach&ndash;Zehnder interferometers applying a matrix to coherent light: N(N&minus;1)/2 MZIs per unitary, each path crossing about N of them, so errors and loss compound with size. Shen et al. ran a vowel classifier on 56 MZIs at 76.7% against 91.7% simulated.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-06">OptAI 01 &middot; coherent MZI meshes</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-07">OptAI 01 &middot; interactive mesh errors</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-09">OptAI 02 &middot; scaling the array</a></span></dd>
+        <dt id="g-wdmcrossbar">Incoherent WDM crossbar</dt>
+        <dd>One input per wavelength, weighted by attenuators, rings or phase-change cells and summed on a photodiode: robust to phase but needing many wavelengths and two detectors for signed values. The photonic tensor core of Feldmann et al. is the best-known example.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-08">OptAI 01 &middot; incoherent and wavelength-multiplexed engines</a></span></dd>
+        <dt id="g-photoelectric">Photoelectric multiplication</dt>
+        <dd>Encoding both operands in light and multiplying them by interference on a balanced detector, with time integration summing the products. It allows very large networks and a shot-noise floor that can be as low as 50 zJ per MAC in theory.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-09">OptAI 01 &middot; photoelectric multiplication</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-05">OptAI 02 &middot; the photon floor</a></span></dd>
+        <dt id="g-nonlinearity">The nonlinearity problem</dt>
+        <dd>Optics is linear at these intensities, so activations are usually applied electronically between optical layers, at a conversion cost per layer. On-chip optoelectronic nonlinearities have run small deep networks in 410&ndash;570 ps.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-10">OptAI 01 &middot; the nonlinearity problem</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-08">OptAI 03 &middot; latency niches</a></span></dd>
+    </dl>
+    <h3>Precision and energy</h3>
+    <dl class="gloss">
+        <dt id="g-reuse">Reuse: MACs per conversion</dt>
+        <dd>An N &times; N matrix&ndash;vector product is N<sup>2</sup> MACs for 2N conversions, so each conversion is shared by N/2 MACs and converter energy per MAC falls as 1/N. Weights that change for every vector lose this reuse.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-01">OptAI 02 &middot; the operation and its reuse</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-02">OptAI 03 &middot; the conditions for a win</a></span></dd>
+        <dt id="g-weightstore">Weight storage in optics</dt>
+        <dd>How an optical array holds its weights: thermo-optic phase shifters (continuous heater power), phase-change cells (non-volatile, few levels, slow writes), electro-optic shifters, or modulator pixels. Static power per weight is paid at every use.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-03">OptAI 02 &middot; storing the weights</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-08">OptAI 02 &middot; static power and utilisation</a></span></dd>
+        <dt id="g-photonfloor">The photon floor</dt>
+        <dd>Shot noise falls as 1/&radic;n with n detected photons, so matching the quantisation noise of an E-bit converter needs about 3&middot;4<sup>E</sup> photons per detection: about 200,000 (25 fJ at 1550 nm) at 8 bits. Each extra bit quadruples it.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-05">OptAI 02 &middot; the photon floor</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-06">OptAI 02 &middot; interactive energy per MAC</a></span></dd>
+        <dt id="g-convfloor">Conversion floor</dt>
+        <dd>The energy of the DACs and ADCs around an optical engine, each about Walden FoM &times; 2<sup>ENOB</sup> per sample and shared by N MACs. It, not the optics, usually dominates, and it sets the minimum energy any claim must cover.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-07">OptAI 02 &middot; why converters dominate</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-07">OptAI 04 &middot; interactive claim checker</a></span></dd>
+        <dt id="g-staticperweight">Static power per weight</dt>
+        <dd>Power drawn to hold a weight whether or not it computes, costing P/f per use at vector rate f: 1 mW at 1 GHz is 1 pJ per MAC, more than an 8-bit digital MAC at 45 nm.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-08">OptAI 02 &middot; static power and utilisation</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-03">OptAI 03 &middot; interactive win map</a></span></dd>
+        <dt id="g-digitalmac">Digital MAC energy</dt>
+        <dd>The yardstick: about 0.2 pJ for an 8-bit multiply and 0.03 pJ for an add at 45 nm, against 10 pJ for a 64-bit SRAM access and 1.3&ndash;2.6 nJ for a DRAM access (Horowitz). An H100 at peak dense FP8 is about 0.7 pJ per MAC at board level.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-11">OptAI 02 &middot; the digital yardstick</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-05">OptAI 03 &middot; memory and Amdahl</a></span></dd>
+        <dt id="g-calibration">Calibration and drift</dt>
+        <dd>Measuring and correcting each device's fabrication errors after manufacture, and holding the result against temperature. Self-configuring meshes tolerate split ratios from 85:15 to 15:85; heat moves every phase.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-10">OptAI 02 &middot; calibration and drift</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_01_Optical_Computing_Map/#slide-06">OptAI 01 &middot; coherent MZI meshes</a></span></dd>
+    </dl>
+    <h3>Where it wins</h3>
+    <dl class="gloss">
+        <dt id="g-winconditions">Conditions for an optical win</dt>
+        <dd>Large matrices, low precision, static reused weights, low static power, high utilisation and weights held near the optics. Analyses place the photonic advantage at N &gt; 500 and noise precision of 4 bits or fewer.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-02">OptAI 03 &middot; the conditions for a win</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-03">OptAI 03 &middot; interactive win map</a></span></dd>
+        <dt id="g-memorywall">Memory wall for optical compute</dt>
+        <dd>A DRAM access costs thousands of digital MACs, so an optical engine that makes MACs cheap but still fetches its weights saves little. Optical engines must be weight-stationary, and large models must be tiled and reloaded.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-05">OptAI 03 &middot; memory and Amdahl</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_02_Optical_Matrix_Multiply/#slide-11">OptAI 02 &middot; the digital yardstick</a></span></dd>
+        <dt id="g-oneoverd">1/d scaling of optical energy</dt>
+        <dd>In an optical Transformer, optical energy per MAC falls as 1/d with model width d, because conversions and photons are shared by more MACs. Anderson et al. project about 100&times; for the largest current Transformers and over 8,000&times; at a quadrillion parameters (modelled, not measured).<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-07">OptAI 03 &middot; the scaling argument</a></span></dd>
+        <dt id="g-latencyniche">Latency niches</dt>
+        <dd>Problems where the time for light to cross a chip matters: iterative solvers looping through one matrix (Ising problems at up to 1 GHz and 3 ns per cycle), control and signal processing, and sub-nanosecond classification.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-08">OptAI 03 &middot; latency niches</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-03">OptAI 04 &middot; Lightelligence</a></span></dd>
+        <dt id="g-scorecard">Optical AI scorecard</dt>
+        <dd>This series' judgement by workload: strongest for vision on light that arrives optically, plausible for CNN inference and iterative solvers, conditional on memory for LLM projections, poor for attention and hardest for training.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_03_Where_Optics_Wins/#slide-11">OptAI 03 &middot; a scorecard</a></span></dd>
+    </dl>
+    <h3>Reading the landscape</h3>
+    <dl class="gloss">
+        <dt id="g-companyclaim">Company claim</dt>
+        <dd>A performance figure stated by a company in a press release, product page or funding announcement. This series quotes, links and labels each one, and asks what operation, precision, power, baseline and workload it rests on.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-01">OptAI 04 &middot; how to read a company's claim</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-11">OptAI 04 &middot; questions to ask</a></span></dd>
+        <dt id="g-claimcheck">Claim checker</dt>
+        <dd>Turning a claimed throughput and power into energy per MAC and comparing it with the conversion floor for an assumed array width and precision: a test of consistency, not truth, that shows what a claim must assume.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-07">OptAI 04 &middot; interactive claim checker</a></span></dd>
+        <dt id="g-abfp">Adaptive block floating point (ABFP)</dt>
+        <dd>A number format in which a block of values shares an exponent; Lightmatter's 2025 processor reports 16-bit ABFP operations computed with analogue photonic cores, reaching near-electronic precision on ResNet and BERT.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-02">OptAI 04 &middot; Lightmatter</a></span></dd>
+        <dt id="g-interconnectpivot">The pull towards interconnect</dt>
+        <dd>Companies that began in optical compute increasingly also sell optical interconnect, which moves bits digitally with no analogue precision to defend; Marvell's acquisition of Celestial AI's Photonic Fabric is the largest deal listed.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-08">OptAI 04 &middot; the interconnect companies</a> &middot; <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-10">OptAI 04 &middot; the pull towards interconnect</a></span></dd>
+        <dt id="g-evidence">Levels of evidence</dt>
+        <dd>From strongest to weakest: a peer-reviewed system running real models; peer-reviewed results on selected tasks; products announced with claims but no published method; funding with targets.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptAI_04_Landscape/#slide-09">OptAI 04 &middot; what has been shown</a></span></dd>
+    </dl>
+    <h3>Explained in the sister series</h3>
+    <p class="gloss-intro"><a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-lens">The lens as a Fourier transformer</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-coherence">Coherent and incoherent light</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-phaseproblem">Square-law detection and the phase problem</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-mzimesh">Mach–Zehnder interferometer (MZI) meshes</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-slm">Spatial light modulator (SLM)</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-floatenob">The noise rule for floating-point workloads</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-crest">Crest factor</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-averaging">Dynamic precision by repeated passes</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-conversion">Conversion-bound optics and the break-even ENOB</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-opticalshare">Optical share and the Amdahl bound</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/#g-transformengine">Transform engine against optical MAC</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-d2nn">Diffractive deep neural networks (D²NN)</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-adjoint">In-situ backpropagation (the adjoint method)</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-pat">Physics-aware training</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-realitygap">The reality gap</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-gradprecision">Gradient precision and FP8 E5M2</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-masked">Weight-masked and data-by-data products</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-maskrewrite">Mask rewrites per optimizer step</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-noisereg">Analogue noise in a training loop</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-mzi">Mach–Zehnder interferometer (MZI)</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-wdm">Wavelength-division multiplexing (WDM)</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-comb">Multi-wavelength sources and combs</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-tuning">Thermal tuning and wavelength locking</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-thermo">Thermo-optic effect</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-fabvar">Fabrication variation</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-tfln">Thin-film lithium niobate (and other added materials)</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-vpil">VπL</a> &middot; <a href="https://brendanjameslynskey.github.io/FHE_Hub_Accelerator_Simulators/#g-walden">Walden figure of merit</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Inference_Simulators/#g-photonicpower">Power in photonic compute</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Inference_Simulators/#g-staticdyn">Static and dynamic power</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-module">Photonic link module</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Data_Centres/#g-opticalio">Optical I/O chiplet</a>.</p>
+</main>
+
+<footer class="footer">
+    <p>Part of the <a href="https://brendanjameslynskey.github.io/Hardware/">Hardware index</a>, under <em>Optical Technology</em>.</p>
+    <p style="margin-top: 0.5rem;">Sister series: <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Inference/">Fourier Optics for Inference</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/">Fourier Optics for Training</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/">Silicon Photonics Fundamentals</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Data_Centres/">Optical Technology for Data Centres</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/">Compute in Transit</a>.</p>
+</footer>
+
+</body>
+</html>
