@@ -1,3 +1,7 @@
+<!-- portfolio-strip:start (brief 40) -->
+<sub>**Brendan Lynskey** · [Portfolio home](https://brendanjameslynskey.github.io/) · [Interactive sites](https://brendanjameslynskey.github.io/#sites)</sub>
+<!-- portfolio-strip:end -->
+
 # Optical Technology for AI Processing
 
 Can light do the arithmetic of AI? A map of optical computing approaches and what each has shown; the price of an optical matrix multiply in conversions, precision and static power; where optics could win and where it cannot; and the public landscape of companies, with every company claim attributed to its source and labelled as the company's own. Fourier optics, training and device physics come from [Fourier Optics for Inference](https://github.com/BrendanJamesLynskey/LLM_Hub_Fourier_Optics_Inference), [Fourier Optics for Training](https://github.com/BrendanJamesLynskey/LLM_Hub_Fourier_Optics_Training) and [Silicon Photonics Fundamentals](https://github.com/BrendanJamesLynskey/Optical_Hub_Silicon_Photonics) and are linked, not repeated.
